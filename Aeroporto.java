@@ -4,13 +4,13 @@ public class Aeroporto implements Cloneable
 {
 	 private String codigo;
 	 private String nome;
-	 private int proxVoo;
+	 private int proxAero;
 
      public Aeroporto(String codigo, String nome)throws Exception
      {
 		 this.setCodigo(codigo);
 		 this.setNome(nome);
-		 //proxVoos = new ListaEncadeadaDeVoos();
+		 //proxVoos = new ListaEncadeadaDeAero();
 
 	 }
 	 public void setCodigo(String codigo) throws Exception
@@ -39,7 +39,7 @@ public class Aeroporto implements Cloneable
 	 {
 		 String ret = "Código: " + this.codigo;
 		 ret += "\n Nome: " + this.nome;
-		// ret += "\n Voos: " + this.proxVoo;
+		// ret += "\n Voos: " + this.proxAero;
 
 		return ret;
 	 }
@@ -58,6 +58,8 @@ public class Aeroporto implements Cloneable
 		 	return false;
 		 if(!this.nome.equals(Aero.nome))
 		 	return false;
+		 //if(!this.proxAero.equals(Aero.proxAero))
+		 //	return false;
 
 		return true;
 	 }
@@ -66,7 +68,7 @@ public class Aeroporto implements Cloneable
 		 int ret = 777;
 		 ret = ret * 7 + this.codigo.hashCode();
 		 ret = ret * 7 + this.nome.hashCode();
-		 //ret = ret * 7 + proxVoo.hashCode();
+		// ret = ret * 7 + proxAero.hashCode();
 
 		 if(ret < 0)
 		 	ret = -ret;
@@ -79,7 +81,7 @@ public class Aeroporto implements Cloneable
 
 		 this.codigo = modelo.codigo;
 		 this.nome   = modelo.nome;
-		 this.proxVoo= modelo.proxVoo;
+		 this.proxAero= modelo.proxAero;
 	 }
 	 public Object clone()
 	 {
