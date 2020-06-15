@@ -1,150 +1,267 @@
-//import ListaEncadeadaDeVoos.ListaEncadeadaDeVoos;
 import java.lang.reflect.*;
 
-public class ListaEncadeadaPrincipal implements Cloneable
+public class ListaEncadeadaPrincipal <Aeroporto>
 {
-	public class Aeroporto
-	{
-		 private String codigo;
-		 private String nome;
-		 private Aeroporto proxAero;
+    private class No
+    {
+        private Aeroporto  info;
+        private No prox;
 
-		 public Aeroporto(String codi, String name, String proximo)throws Exception
-		 {
-			 this.codigo  = codi;
-			 this.nome    = name;
-			 //this.proxAero= proximo;
+        public No (Aeroporto i, No p)
+        {
+            this.info = i;
+            this.prox = p;
+        }
 
-		 }
-		// public Aeroporto(String cod, String nom)throws Exception
-		// {
-			//this.setCodigo = cod;
-			//this.setNome   = nom;
-			//this.proxAero = null;
+        public No (Aeroporto i)
+        {
+            this.info = i;
+            this.prox = null;
+        }
 
-		// }
-		 public void setCodigo(String codi) throws Exception//setters
-		 {
-			 if(codi == null)
-				throw new Exception("Codigo invalido!");
-			 this.codigo = codi;
-		 }
-		 public void setNome(String name) throws Exception
-		 {
-			 if(name==null || name.equals(""))
-				throw new Exception("Nome invalido!");
-			 this.nome = name;
-		 }
-		 public void setProxAero(Aeroporto proximo)
-		 {
-		 	 this.proxAero = proximo;
-		 }
+        public Aeroporto getInfo ()
+        {
+            return this.info;
+        }
 
-		 public String getCodigo()//getters
-		 {
-			 return this.codigo;
-		 }
-		 public String getNome()
-		 {
-			 return new String(this.nome);
-		 }
-		 public String getProxAero()
-		 {
-		 	 return new String(this.nome);
-		 }
+        public No getProx ()
+        {
+            return this.prox;
+        }
 
-     }//fim da classe aeroporto
+        public void setInfo (Aeroporto i)
+        {
+            this.info = i;
+        }
 
-     private Aeroporto primerio, ultimo;
+        public void setProx (No p)
+        {
+            this.prox = p;
+        }
+    } //fim da classe No
 
-        public ListaEncadeadaPrincipal ()
-	    {
-	 		 this.primeiro = null;
-	 		 this.ultimo   = null;
-	    }
-		//public boolean estaVazia ()
-		//{
-		//	 return this.primeiro==null;
-		//}
+    private No primeiro, ultimo;
 
-		 public String toString()
-		 {
+    public ListaEncadeadaPrincipal ()
+    {
+		this.primeiro = null;
+		this.ultimo   = null;
+	}
 
+    public boolean isVazia ()
+    {
+        return this.primeiro==null;
+    }
 
-			 //String ret="[";
+    public boolean tem (Aeroporto i) throws Exception
+    {
+		if (i==null)
+		    throw new Exception ("Informacao ausente");
 
-			       // No atual = this.primeiro;
+        No atual=this.primeiro;
 
-			       // while (atual!=null)
-			       // {
-			           // ret = ret + atual.getproxAero();
+        while (atual!=null)
+        {
+            if (i.equals(atual.getInfo()))
+                return true;
 
-			           // if (atual!=this.ultimo)
-			            //    ret=ret+",";
+            atual = atual.getProx();
+        }
 
-			           // atual=atual.getproxAero();
-			       // }
+        return false;
+    }
 
-                 //return ret+"]";
-		 }
-		 public boolean equals(Object obj)
-		 {
-			 if(obj==null)
-				return false;
-			 if(this==obj)
-				return true;
-			 if(this.getClass ()!= obj.getClass())
-				return false;
+    public int getQtd ()
+    {
+        No  atual=this.primeiro;
+        int ret  =0;
 
-			 ListaEncadeadaPrincipal ListaPrincipal = (ListaEncadeadaPrincipal)obj;
+        while (atual!=null)
+        {
+            ret++;
+            atual = atual.getProx();
+        }
 
-			 //......................................
+        return ret;
+    }
 
-			return true;
-		 }
-		 public int hashCode()
-		 {
-			int ret = 6;
-			// ret = ret * 7 + this.codigo.hashCode();
-			// ret = ret * 7 + this.nome.hashCode();
-			// ret = ret * 7 + proxAero.hashCode();
+    private Aeroporto meuCloneDeAeroporto (Aeroporto aero)
+    {
+        Aeroporto ret=null;
 
-			 if(ret < 0)
-				ret = -ret;
-			 return ret;
-		 }
-		 public ListaEncadeadaPrincipal(ListaEncadeadaPrincipal modelo) throws Exception
-		 {
-			 /*if(modelo == null)
-				throw new Exception("Modelo invalido");
+        try
+        {
+            Class<?> classe = aero.getClass();
+            Class<?>[] tiposDosParms = null;
+            Method metodo = classe.getMethod("clone",tiposDosParms);
+            Object[] parms = null;
+            ret = (Aeroporto)metodo.invoke(aero,parms);
+        }
+        catch (Exception erro)
+        {}
+        return ret;
+    }
 
-			 this.primeiro = new Aeroporto(modelo,primeiro.getProxAero());
+    public void insiraNoInicio (Aeroporto i) throws Exception
+    {
+        if (i==null)
+            throw new Exception ("Informacao ausente");
 
-			 Aeroporto atualDoThis   = this.primeiro;
-			 Aeroporto atualDoModelp = modelo.primeiro.getProxAero();
+        Aeroporto inserir=null;
+        if (i instanceof Cloneable)
+            inserir = meuCloneDeAeroporto(i);
+        else
+            inserir = i;
 
-			 while(atualDoModelo!= null)
-			 {
-				 atualDoThis.setProxAero(new Aeroporto(atualDoModelo.getProxAero));
-				 atualDoThis   = atualDoThis  .getProxAero ();
-				 atualDoModelo = atualDoModelo.getProxAero ();
-			 }
+        this.primeiro = new No (inserir,this.primeiro);
 
-			 this.ultimo = atualDoThis;*/
-		 }
-		 public Object clone()
-		 {
-			 ListaEncadeadaPrincipal ret = null;
-			 try
-			 {
-				ret = new ListaEncadeadaPrincipal(this);
-			 }
-			 catch(Exception erro)
-			 {}
+        if (this.ultimo==null)
+            this.ultimo=this.primeiro;
+    }
 
-			 return ret;
-		 }
+    public void remova (Aeroporto i) throws Exception
+    {
+        if (i==null)
+            throw new Exception ("Informacao ausente");
 
+        if (this.primeiro==null)
+            throw new Exception ("Lista vazia");
+
+        if (i.equals(this.primeiro.getInfo()))
+        {
+            if (this.ultimo==this.primeiro)
+                this.ultimo=null;
+
+            this.primeiro=this.primeiro.getProx();
+
+            return;
+        }
+
+        No atual=this.primeiro;
+
+        for(;;)
+        {
+            if (atual.getProx()==null)
+                throw new Exception ("Informacao inexistente");
+
+            if (i.equals(atual.getProx().getInfo()))
+            {
+                if (this.ultimo==atual.getProx())
+                    this.ultimo=atual;
+
+                atual.setProx(atual.getProx().getProx());
+
+                return;
+            }
+
+            atual=atual.getProx();
+        }
+    }
+
+	public String toString ()
+    {
+        String ret="[";
+
+        No atual=this.primeiro;
+
+        while (atual!=null)
+        {
+            ret=ret+atual.getInfo();
+
+            if (atual!=this.ultimo)
+                ret=ret+",";
+
+            atual=atual.getProx();
+        }
+
+        return ret+"]";
+    }
+
+    public boolean equals (Object obj)
+    {
+        if (this==obj)
+            return true;
+
+        if (obj==null)
+            return false;
+
+        if (this.getClass()!=obj.getClass())
+            return false;
+
+        ListaEncadeadaPrincipal<Aeroporto> lista =
+       (ListaEncadeadaPrincipal<Aeroporto>)obj;
+
+        No atualThis =this .primeiro;
+        No atualLista=lista.primeiro;
+
+        while (atualThis!=null && atualLista!=null)
+        {
+            if (!atualThis.getInfo().equals(atualLista.getInfo()))
+                return false;
+
+            atualThis  = atualThis .getProx();
+            atualLista = atualLista.getProx();
+        }
+
+        if (atualThis!=null)
+            return false;
+
+        if (atualLista!=null)
+            return false;
+        return true;
+    }
+
+    public int hashCode ()
+    {
+        final int PRIMO = 13;
+
+        int ret=666;
+
+        for (No atual=this.primeiro;
+             atual!=null;
+             atual=atual.getProx())
+             ret = 17*ret + atual.getInfo().hashCode();
+
+        if (ret<0) ret = -ret;
+
+        return ret;
+    }
+
+    // construtor de copia
+    public ListaEncadeadaPrincipal (ListaEncadeadaPrincipal<Aeroporto> modelo) throws Exception
+    {
+        if (modelo==null)
+            throw new Exception ("Modelo ausente");
+
+        if (modelo.primeiro==null)
+            return; // sai do construtor, pq this.primeiro ja é null
+
+        this.primeiro = new No (modelo.primeiro.getInfo());
+
+        No atualDoThis   = this  .primeiro;
+        No atualDoModelo = modelo.primeiro.getProx();
+
+        while (atualDoModelo!=null)
+        {
+            atualDoThis.setProx (new No (atualDoModelo.getInfo()));
+            atualDoThis   = atualDoThis  .getProx ();
+            atualDoModelo = atualDoModelo.getProx ();
+        }
+
+        this.ultimo = atualDoThis;
+    }
+
+    public Object clone ()
+    {
+        ListaEncadeadaPrincipal<Aeroporto> ret=null;
+
+        try
+        {
+            ret = new ListaEncadeadaPrincipal (this);
+        }
+        catch (Exception erro)
+        {} // sei que this NUNCA é null e o contrutor de copia da erro quando seu parametro é null
+
+        return ret;
+    }
 }
-
-
