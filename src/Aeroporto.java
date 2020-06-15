@@ -4,13 +4,13 @@ public class Aeroporto implements Cloneable
 {
 	private String codigo;
 	private String nome;
-	private ListaEncadeadaPrincipal<Aeroporto> proxAero;
+	private ListaSimplesDesordenada<Voo> listaDeVoos;
 
 	public Aeroporto(String codigo, String nome)throws Exception
 	{
 		 this.setCodigo(codigo);
 		 this.setNome  (nome);
-		 this.proxAero = new ListaEncadeadaPrincipal<Aeroporto> ();
+		 this.listaDeVoos = new ListaSimplesDesordenada<Voo> ();
 	}
 	//setters
 	 public void setCodigo(String codigo) throws Exception
@@ -27,6 +27,15 @@ public class Aeroporto implements Cloneable
 
 		 this.nome = nome;
      }
+	 
+	 public void setListaVoos(Voo voo) throws Exception
+	 {
+		 if (voo == null)
+			 throw new Exception("Voo inválido!");
+		 
+		 this.listaDeVoos = new ListaSimplesDesordenada<Voo> ();
+	 }
+	 
      //getters
 	 public String getCodigo()
      {
@@ -36,27 +45,38 @@ public class Aeroporto implements Cloneable
 	 {
 		 return this.nome;
 	 }
-
-	 public void guardeUmAero(Aeroporto aero)throws Exception
+	 
+	 public Voo getVoo()
 	 {
-		  if (aero==null)
+		 return this.listaDeVoos;
+	 }
+
+	 public void guardeUmVoo(Voo voo)throws Exception
+	 {
+		  if (voo==null)
             throw new Exception ("Falta o que guardar");
 
-            //.......................................
+          this.listaDeVoos.insiraNoFim(voo);
 
 	 }
-	 public void removaUmAero()throws Exception
+	 public void removaUmVoo(Voo voo)throws Exception
 	 {
-		  if (this.proxAero.isVazia())
+		  if (this.listaDeVoos.isVazia())
 		       throw new Exception ("Nada a remover");
 
-        //.................................
+		  this.listaDeVoos.remova(voo);
 	 }
-     public boolean Évazia()
+     public boolean eVazia()
      {
-		 return this.proxAero.isVazia();
+		 return this.listaDeVoos.isVazia();
 	 }
 
+     public String listaVoosPorAeroporto(Voo voo, Aeroporto aero)
+     {
+    	 
+    	 
+     }
+     
 	 //toString
 	 public String toString()
 	 {

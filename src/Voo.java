@@ -1,23 +1,18 @@
-public class ListaEncadeadaDeVoos
-{
-	private class Voo
+public class Voo
     {
         private String indiceDaCidadeDeDestino;
         private int numeroDoVoo;
-        private Voo prox;
 
         public Voo (String i, int num, Voo p)
         {
             this.indiceDaCidadeDeDestino = i;
             this.numeroDoVoo = num;
-            this.prox = p;
         }
 
         public Voo (String i, int num)
         {
             this.indiceDaCidadeDeDestino = i;
             this.numeroDoVoo = num;
-            this.prox = null;
         }
 
         public String getIndiceDaCidadeDeDestino ()
@@ -29,11 +24,6 @@ public class ListaEncadeadaDeVoos
         {
 			return this.numeroDoVoo;
 		}
-
-        public Voo getProx ()
-        {
-            return this.prox;
-        }
 
         public void setIndiceDaCidadeDeDestino (String i) throws Exception
         {
@@ -50,14 +40,4 @@ public class ListaEncadeadaDeVoos
 
 			this.numeroDoVoo = num;
 		}
-
-        public void setProx (Voo p)
-        {
-            this.prox = p;
-        }
     } //fim da classe Voo
-
-    private Voo primeiro, ultimo;
-
-
-}
