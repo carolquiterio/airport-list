@@ -35,5 +35,21 @@ public class Voo
 			this.numeroDoVoo = num;
 		}
         
+   	 public String toString() 
+   	 {
+   		 String ret = "";
+   		 
+   		 try {
+   			    ret = " Número no voo: " + this.numeroDoVoo;
+   		 		ret+= ", Cidade: " + this.indiceDaCidadeDeDestino;
+
+   		 		return ret;
+   		 }
+   		 catch(Exception err)
+   		 {}
+   		 
+   		 return ret;
+   	 }
+        
         //equals, hashcod, copia, clone,
     } //fim da classe Voo
