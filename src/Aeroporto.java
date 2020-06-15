@@ -79,12 +79,17 @@ public class Aeroporto implements Cloneable
 		  if (aero==null)
 	            throw new Exception ("Parâmetros inválidos!");
     	 
-		  if (this == aero) {
-			  listaVoos.get
+		  if (this == aero) 
+		  {
+			 return aero.listaDeVoos.toString();
 		  }
 		  
-		  return "";
-    	  
+		  return("Este aeroporto não existe!");
+     }
+     
+     public String listaVoos() throws Exception
+     {  
+		  return this.listaDeVoos.toString();
      }
      
 	 //toString

@@ -168,35 +168,6 @@ public class ListaSimplesDesordenada <X>
             
         return ret;
     }
-    
-    public X getListaSimplesDesordenada (X i) throws Exception
-    {
-        if (i==null)
-            throw new Exception ("Informacao ausente");
-
-        if (this.primeiro==null/*&&this.ultimo==null*/)
-            throw new Exception ("Lista vazia");
-
-        if (i.equals(this.primeiro.getInfo()))
-        {
-            return this.primeiro.getInfo();
-        }
-
-        No atual=this.primeiro;
-
-        for(;;) // FOR EVER (repete até Exception ou return)
-        {
-            if (atual.getProx()==null)
-                throw new Exception ("Informacao inexistente");
-
-            if (i.equals(atual.getProx().getInfo()))
-            {
-                return atual.getInfo();
-            }
-
-            atual=atual.getProx();
-        }    	
-    }
 
     public void removaDoInicio () throws Exception
     {
