@@ -40,4 +40,31 @@ public class Voo
 
 			this.numeroDoVoo = num;
 		}
+        
+      //contrutor de cópia
+   	 public Voo(Voo modelo)throws Exception
+   	 {
+   		 if(modelo == null)
+   		 	throw new Exception("Modelo inválido");
+
+   		 this.indiceDaCidadeDeDestino = modelo.indiceDaCidadeDeDestino;
+   		 this.numeroDoVoo   = modelo.numeroDoVoo;
+   	 }
+   	 //clone
+   	 public Object clone()
+   	 {
+   		Voo ret = null;
+
+   		 try
+   		 {
+   			 ret = new Voo(this);
+   		 }
+   		 catch(Exception erro)
+   		 {}//sei que não vai dar erro
+
+   		 return ret;
+        }
+
+        
+        
     } //fim da classe Voo
