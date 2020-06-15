@@ -34,4 +34,6 @@ public class Voo
 
 			this.numeroDoVoo = num;
 		}
+        
+        //equals, hashcod, copia, clone,
     } //fim da classe Voo
