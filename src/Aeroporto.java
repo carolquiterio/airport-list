@@ -61,7 +61,7 @@ public class Aeroporto implements Cloneable
 
 	 }
 	 
-	 public void removaUmVoo(Voo voo)throws Exception
+	 public void removaUmVoo(int numero)throws Exception
 	 {
 		  if (this.listaDeVoos.isVazia())
 		       throw new Exception ("Nada a remover");
@@ -69,12 +69,12 @@ public class Aeroporto implements Cloneable
 		  this.listaDeVoos.remova(voo);
 	 }
      
-	 /*public boolean eVazia()
+	 public boolean eVazia()
      {
 		 return this.listaDeVoos.isVazia();
 	 }
 
-     public String listaVoosPorAeroporto(Aeroporto aero) throws Exception
+     /*public String listaVoosPorAeroporto(Aeroporto aero) throws Exception
      {  
 		  if (aero==null)
 	            throw new Exception ("Parâmetros inválidos!");

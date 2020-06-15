@@ -13,6 +13,8 @@ public class Programa
         	aero.guardeUmVoo(v);        	
         	lis.insiraNoFim(new Aeroporto("oi", "oi"));
             System.out.println (lis);
+            aero.removaUmVoo(01);
+            System.out.println(lis);
             
         	/*System.out.println();
         	
