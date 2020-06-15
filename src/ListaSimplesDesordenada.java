@@ -116,7 +116,7 @@ public class ListaSimplesDesordenada <X>
         else
             inserir = i;
             
-        this.primeiro = new No (inserir,this.primeiro);
+        this.primeiro = new No (inserir, this.primeiro);
 
         if (this.ultimo==null)
             this.ultimo=this.primeiro;
@@ -288,7 +288,7 @@ public class ListaSimplesDesordenada <X>
 	
 	public String toString ()
     {
-        String ret="[";
+        String ret="";
 
         No atual=this.primeiro;
 
@@ -297,12 +297,12 @@ public class ListaSimplesDesordenada <X>
             ret=ret+atual.getInfo();
 
             if (atual!=this.ultimo)
-                ret=ret+",";
+                ret=ret+"\n";
 
             atual=atual.getProx();
         }
 
-        return ret+"]";
+        return ret+"";
     }
     
     public boolean equals (Object obj)

@@ -3,12 +3,6 @@ public class Voo
         private String indiceDaCidadeDeDestino;
         private int numeroDoVoo;
 
-        public Voo (String i, int num, Voo p)
-        {
-            this.indiceDaCidadeDeDestino = i;
-            this.numeroDoVoo = num;
-        }
-
         public Voo (String i, int num)
         {
             this.indiceDaCidadeDeDestino = i;
