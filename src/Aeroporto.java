@@ -41,15 +41,16 @@ public class Aeroporto implements Cloneable
      {
  		 return this.codigo;
    	 }
+	 
 	 public String getNome()
 	 {
 		 return this.nome;
 	 }
 	 
-	 public Voo getVoo()
-	 {
-		 return this.listaDeVoos;
-	 }
+	 //public Voo getVoo()
+	 //{
+	 //	 return this.listaDeVoos;
+	 //}
 
 	 public void guardeUmVoo(Voo voo)throws Exception
 	 {
@@ -59,6 +60,7 @@ public class Aeroporto implements Cloneable
           this.listaDeVoos.insiraNoFim(voo);
 
 	 }
+	 
 	 public void removaUmVoo(Voo voo)throws Exception
 	 {
 		  if (this.listaDeVoos.isVazia())
@@ -66,15 +68,23 @@ public class Aeroporto implements Cloneable
 
 		  this.listaDeVoos.remova(voo);
 	 }
-     public boolean eVazia()
+     
+	 public boolean eVazia()
      {
 		 return this.listaDeVoos.isVazia();
 	 }
 
-     public String listaVoosPorAeroporto(Voo voo, Aeroporto aero)
-     {
+     public String listaVoosPorAeroporto(Aeroporto aero) throws Exception
+     {  
+		  if (aero==null)
+	            throw new Exception ("Parâmetros inválidos!");
     	 
-    	 
+		  if (this == aero) {
+			  listaVoos.get
+		  }
+		  
+		  return "";
+    	  
      }
      
 	 //toString
@@ -117,7 +127,7 @@ public class Aeroporto implements Cloneable
 		 if(ret < 0)
 		    ret = -ret;
 
-        return ret;
+         return ret;
 	 }
 	 //contrutor de cópia
 	 public Aeroporto(Aeroporto modelo)throws Exception
@@ -126,7 +136,7 @@ public class Aeroporto implements Cloneable
 		 	throw new Exception("Modelo inválido");
 
 
-		 this.proxAero = (modelo.proxAero);
+		 this.listaDeVoos = (modelo.listaDeVoos);
 		 this.codigo = modelo.codigo;
 		 this.nome   = modelo.nome;
 	 }
