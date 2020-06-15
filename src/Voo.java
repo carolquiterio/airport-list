@@ -41,6 +41,19 @@ public class Voo
 			this.numeroDoVoo = num;
 		}
         
+     //HashCode
+     public int hashCode()
+   	 {
+   		 int ret = 666;
+
+   		 ret = ret * 7 + this.indiceDaCidadeDeDestino.hashCode();
+   		 ret = ret * 7 + new Integer(numeroDoVoo).hashCode();
+
+   		 if(ret < 0)
+   		    ret = -ret;
+
+            return ret;
+   	 } 
       //contrutor de cópia
    	 public Voo(Voo modelo)throws Exception
    	 {
