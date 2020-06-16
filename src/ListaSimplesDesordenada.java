@@ -1,6 +1,6 @@
 import java.lang.reflect.*;
 
-public class ListaSimplesDesordenada <X>  //<X extends Comparable <X>>
+public class ListaSimplesDesordenada <X > //xtends Comparable<X>  
 {
     private class No
     {
@@ -72,7 +72,7 @@ public class ListaSimplesDesordenada <X>  //<X extends Comparable <X>>
         return false;
     }
     
-    public  boolean temInformacao (String i) throws Exception
+    public  boolean temInformacao (X i) throws Exception
     {
 		if (i==null)
 		    throw new Exception ("Informacao ausente");
@@ -81,7 +81,7 @@ public class ListaSimplesDesordenada <X>  //<X extends Comparable <X>>
 
         while (atual!=null)
         {
-            if (i.toString().equals(atual.getInfo()))
+            if (i.equals(atual.getInfo()))
                 return true;
                 
             atual = atual.getProx();

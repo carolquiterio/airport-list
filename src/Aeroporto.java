@@ -1,6 +1,6 @@
 import java.lang.reflect.Method;
 
-public class Aeroporto implements  Cloneable //Comparable<Aeroporto>,
+public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 {
 	private String codigo;
 	private String nome;
@@ -8,8 +8,8 @@ public class Aeroporto implements  Cloneable //Comparable<Aeroporto>,
 
 	public Aeroporto(String codigo, String nome)throws Exception
 	{
-		 this.setCodigo(codigo);
-		 this.setNome  (nome);
+		 this.setCodigo(codigo.toLowerCase());
+		 this.setNome  (nome.toLowerCase());
 		 this.listaDeVoos = new ListaSimplesDesordenada<Voo> ();
 	}
 	//setters
@@ -167,11 +167,8 @@ public class Aeroporto implements  Cloneable //Comparable<Aeroporto>,
      }
 
 	// public int compareTo (Aeroporto aero)
-	 //{
-	//	 if (this.codigo < aero.codigo)
-		//	 return -666;
-		 
-		 
+	 //{		 
+		// return this.codigo.compareTo(aero.codigo);
 	 //}
 	 
 	 
