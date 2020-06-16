@@ -22,7 +22,7 @@ public class Voo
         public void setIndiceDaCidadeDeDestino (String i) throws Exception
         {
 			if (i == null || i == "")
-				throw new Exception("Índice da cidade inválido!");
+				throw new Exception("Indice da cidade invalido!");
 
             this.indiceDaCidadeDeDestino = i;
         }
@@ -30,7 +30,7 @@ public class Voo
         public void setNumeroDoVoo (int num) throws Exception
         {
 			if(num < 0)
-				throw new Exception("Número do voo inválido!");
+				throw new Exception("Numero do voo invalido!");
 
 			this.numeroDoVoo = num;
 		}
@@ -40,7 +40,7 @@ public class Voo
    		 String ret = "";
    		 
    		 try {
-   			    ret = " Número no voo: " + this.numeroDoVoo;
+   			    ret = "Numero no voo: " + this.numeroDoVoo;
    		 		ret+= ", Cidade: " + this.indiceDaCidadeDeDestino;
 
    		 		return ret;
@@ -66,11 +66,11 @@ public class Voo
 
             return ret;
    	 } 
-      //contrutor de cópia
+      //contrutor de copia
    	 public Voo(Voo modelo)throws Exception
    	 {
    		 if(modelo == null)
-   		 	throw new Exception("Modelo inválido");
+   		 	throw new Exception("Modelo invalido");
 
    		 this.indiceDaCidadeDeDestino = modelo.indiceDaCidadeDeDestino;
    		 this.numeroDoVoo   = modelo.numeroDoVoo;
@@ -85,7 +85,7 @@ public class Voo
    			 ret = new Voo(this);
    		 }
    		 catch(Exception erro)
-   		 {}//sei que não vai dar erro
+   		 {}//sei que nao vai dar erro
 
    		 return ret;
         }

@@ -61,7 +61,7 @@ public class Aeroporto implements Cloneable
 
 	 }
 	 
-	 public void removaUmVoo(int numero)throws Exception
+	 public void removaUmVoo(Voo voo)throws Exception
 	 {
 		  if (this.listaDeVoos.isVazia())
 		       throw new Exception ("Nada a remover");
@@ -74,23 +74,25 @@ public class Aeroporto implements Cloneable
 		 return this.listaDeVoos.isVazia();
 	 }
 
-     /*public String listaVoosPorAeroporto(Aeroporto aero) throws Exception
+     public String listaVoosPorAeroporto(String cod) throws Exception
      {  
-		  if (aero==null)
+		  if (cod==null)
 	            throw new Exception ("Parâmetros inválidos!");
     	 
-		  if (this == aero) 
+		  String ret = "";
+		  
+		  if (this.codigo == cod) 
 		  {
-			 return aero.listaDeVoos.toString();
+			 ret = this.listaDeVoos.toString();
 		  }
 		  
-		  return("Este aeroporto não existe!");
+		  return ret;
      }
      
      public ListaSimplesDesordenada listaVoos() throws Exception
      {  
 		  return this.listaDeVoos;
-     }*/
+     }
      
 	 //toString
 	 public String toString() 

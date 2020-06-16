@@ -9,12 +9,15 @@ public class Programa
         	Voo v = new Voo ("nome", 1);
         	
         	Aeroporto aero;       	
-        	lis.insiraNoInicio(aero = new Aeroporto("BR", "BRASILIA"));
-        	aero.guardeUmVoo(v);        	
-        	lis.insiraNoFim(new Aeroporto("oi", "oi"));
-            System.out.println (lis);
-            aero.removaUmVoo(01);
-            System.out.println(lis);
+        	lis.insiraNoInicio(aero = new Aeroporto("BB", "BRASILIA"));
+        	aero.guardeUmVoo(v);  
+        	aero.guardeUmVoo(new Voo ("segundoVoo", 2));
+        	
+        	//lis.insiraNoFim(new Aeroporto("oi", "oi"));
+            
+        	//System.out.println (lis);
+            //aero.removaUmVoo(v);
+            System.out.println(aero.listaVoosPorAeroporto("bb"));
             
         	/*System.out.println();
         	
@@ -22,6 +25,8 @@ public class Programa
 			{
 				System.out.println ();
 			}*/
+            
+            
         }
         catch (Exception e)
         {
