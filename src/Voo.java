@@ -22,7 +22,7 @@ public class Voo
         public void setIndiceDaCidadeDeDestino (String i) throws Exception
         {
 			if (i == null || i == "")
-				throw new Exception("Índice da cidade inválido!");
+				throw new Exception("�ndice da cidade inv�lido!");
 
             this.indiceDaCidadeDeDestino = i;
         }
@@ -30,7 +30,7 @@ public class Voo
         public void setNumeroDoVoo (int num) throws Exception
         {
 			if(num < 0)
-				throw new Exception("Número do voo inválido!");
+				throw new Exception("Numero do voo inv�lido!");
 
 			this.numeroDoVoo = num;
 		}
@@ -40,7 +40,7 @@ public class Voo
    		 String ret = "";
    		 
    		 try {
-   			    ret = " Número no voo: " + this.numeroDoVoo;
+   			    ret = " Numero do voo: " + this.numeroDoVoo;
    		 		ret+= ", Cidade: " + this.indiceDaCidadeDeDestino;
 
    		 		return ret;
@@ -50,9 +50,29 @@ public class Voo
    		 
    		 return ret;
    	 }
-        
-        //equals, hashcod, copia, clone,
+  	 //equals
+  	public boolean equals(Object obj)
+	 {
+	 	if(this == obj)
+	 		return false;
 
+	 	if(obj == null)
+	 		return false;
+
+	 	//if(this.getClass() != obj.getClas())
+	 	//	return false;
+
+	 	Voo voo = (Voo)obj;
+
+		if(!this.indiceDaCidadeDeDestino.equals(voo.indiceDaCidadeDeDestino))
+	 		return false;
+
+	 	if(this.numeroDoVoo!=voo.numeroDoVoo)
+            return false;
+	 
+	 	return true;
+	 }
+        
      //HashCode
      public int hashCode()
    	 {
@@ -66,11 +86,11 @@ public class Voo
 
             return ret;
    	 } 
-      //contrutor de cópia
+      //contrutor de copia
    	 public Voo(Voo modelo)throws Exception
    	 {
    		 if(modelo == null)
-   		 	throw new Exception("Modelo inválido");
+   		 	throw new Exception("Modelo inv�lido");
 
    		 this.indiceDaCidadeDeDestino = modelo.indiceDaCidadeDeDestino;
    		 this.numeroDoVoo   = modelo.numeroDoVoo;
@@ -85,7 +105,7 @@ public class Voo
    			 ret = new Voo(this);
    		 }
    		 catch(Exception erro)
-   		 {}//sei que não vai dar erro
+   		 {}//sei que n�o vai dar erro
 
    		 return ret;
         }
