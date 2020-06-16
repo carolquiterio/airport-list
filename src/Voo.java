@@ -3,12 +3,6 @@ public class Voo
         private String indiceDaCidadeDeDestino;
         private int numeroDoVoo;
 
-        public Voo (String i, int num, Voo p)
-        {
-            this.indiceDaCidadeDeDestino = i;
-            this.numeroDoVoo = num;
-        }
-
         public Voo (String i, int num)
         {
             this.indiceDaCidadeDeDestino = i;
@@ -28,7 +22,7 @@ public class Voo
         public void setIndiceDaCidadeDeDestino (String i) throws Exception
         {
 			if (i == null || i == "")
-				throw new Exception("Õndice da cidade inv·lido!");
+				throw new Exception("√çndice da cidade inv√°lido!");
 
             this.indiceDaCidadeDeDestino = i;
         }
@@ -36,11 +30,29 @@ public class Voo
         public void setNumeroDoVoo (int num) throws Exception
         {
 			if(num < 0)
-				throw new Exception("N˙mero do voo inv·lido!");
+				throw new Exception("N√∫mero do voo inv√°lido!");
 
 			this.numeroDoVoo = num;
 		}
         
+  	 public String toString() 
+   	 {
+   		 String ret = "";
+   		 
+   		 try {
+   			    ret = " N√∫mero no voo: " + this.numeroDoVoo;
+   		 		ret+= ", Cidade: " + this.indiceDaCidadeDeDestino;
+
+   		 		return ret;
+   		 }
+   		 catch(Exception err)
+   		 {}
+   		 
+   		 return ret;
+   	 }
+        
+        //equals, hashcod, copia, clone,
+
      //HashCode
      public int hashCode()
    	 {
@@ -54,11 +66,11 @@ public class Voo
 
             return ret;
    	 } 
-      //contrutor de cÛpia
+      //contrutor de c√≥pia
    	 public Voo(Voo modelo)throws Exception
    	 {
    		 if(modelo == null)
-   		 	throw new Exception("Modelo inv·lido");
+   		 	throw new Exception("Modelo inv√°lido");
 
    		 this.indiceDaCidadeDeDestino = modelo.indiceDaCidadeDeDestino;
    		 this.numeroDoVoo   = modelo.numeroDoVoo;
@@ -73,11 +85,8 @@ public class Voo
    			 ret = new Voo(this);
    		 }
    		 catch(Exception erro)
-   		 {}//sei que n„o vai dar erro
+   		 {}//sei que n√£o vai dar erro
 
    		 return ret;
         }
-
-        
-        
     } //fim da classe Voo

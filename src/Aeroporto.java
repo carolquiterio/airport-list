@@ -15,7 +15,7 @@ public class Aeroporto implements Cloneable
 	//setters
 	 public void setCodigo(String codigo) throws Exception
 	 {
-		 if(this.codigo == null)
+		 if(codigo == null || codigo.equals(""))
 		 throw new Exception("Codigo invalido!");
 
 		 this.codigo = codigo;
@@ -61,7 +61,7 @@ public class Aeroporto implements Cloneable
 
 	 }
 	 
-	 public void removaUmVoo(Voo voo)throws Exception
+	 public void removaUmVoo(int numero)throws Exception
 	 {
 		  if (this.listaDeVoos.isVazia())
 		       throw new Exception ("Nada a remover");
@@ -74,26 +74,40 @@ public class Aeroporto implements Cloneable
 		 return this.listaDeVoos.isVazia();
 	 }
 
-     public String listaVoosPorAeroporto(Aeroporto aero) throws Exception
+     /*public String listaVoosPorAeroporto(Aeroporto aero) throws Exception
      {  
 		  if (aero==null)
 	            throw new Exception ("Parâmetros inválidos!");
     	 
-		  if (this == aero) {
-			  listaVoos.get
+		  if (this == aero) 
+		  {
+			 return aero.listaDeVoos.toString();
 		  }
 		  
-		  return "";
-    	  
+		  return("Este aeroporto não existe!");
      }
      
+     public ListaSimplesDesordenada listaVoos() throws Exception
+     {  
+		  return this.listaDeVoos;
+     }*/
+     
 	 //toString
-	 public String toString()
+	 public String toString() 
 	 {
-		 String ret = "Código Aeroporto: " + this.codigo;
-		 		ret+= "\n Cidade: " + this.nome;
+		 String ret = "";
+		 
+		 try {
+			    ret = "Código Aeroporto: " + this.codigo;
+		 		ret+= ", Cidade: " + this.nome;
+		 		ret+= ", Voos: " + this.listaDeVoos.toString();
 
 		 		return ret;
+		 }
+		 catch(Exception err)
+		 {}
+		 
+		 return ret;
 	 }
 	 //equals
 	 public boolean equals(Object obj)
