@@ -1,6 +1,6 @@
 import java.lang.reflect.*;
 
-public class ListaSimplesDesordenada <X > //xtends Comparable<X>  
+public class ListaSimplesDesordenada <X > //xtends Comparable<X>
 {
     private class No
     {
@@ -41,7 +41,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
     } //fim da classe No
 
     private No primeiro, ultimo, atual;
-    
+
     public ListaSimplesDesordenada ()
     {
 		this.primeiro = null;
@@ -53,53 +53,34 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
     {
         return this.primeiro==null/*&&this.ultimo==null*/;
     }
-    
+
     public  boolean tem (X i) throws Exception
     {
 		if (i==null)
 		    throw new Exception ("Informacao ausente");
-		
+
         atual=this.primeiro;
 
         while (atual!=null)
         {
             if (i.equals(atual.getInfo()))  //colocar o compareTo no lugar no equals
                 return true;
-                
-            atual = atual.getProx();
-        }
-        
-        return false;
-    }
-    
-    public  boolean temInformacao (X i) throws Exception
-    {
-		if (i==null)
-		    throw new Exception ("Informacao ausente");
-		
-        atual=this.primeiro;
 
-        while (atual!=null)
-        {
-            if (i.equals(atual.getInfo()))
-                return true;
-                
             atual = atual.getProx();
         }
-        
+
         return false;
     }
-     
-    
+
     public X getAtual() throws Exception
     {
     	 if (this.primeiro==null/*&&this.ultimo==null)*/)
              throw new Exception ("Nada a obter");
-    	 
+
          X ret = this.atual.getInfo();
          if (ret instanceof Cloneable)
              ret = meuCloneDeX (ret);
-             
+
          return ret;
     }
 
@@ -110,13 +91,13 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
 
         while (atual!=null)
         {
-            ret++;                
+            ret++;
             atual = atual.getProx();
         }
-        
+
         return ret;
     }
-    
+
     private X meuCloneDeX (X x)
     {
       //return (X)x.clone();
@@ -136,7 +117,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
 
         return ret;
     }
-    
+
     public void insiraNoInicio (X i) throws Exception
     {
         if (i==null)
@@ -147,7 +128,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
             inserir = meuCloneDeX(i);
         else
             inserir = i;
-            
+
         this.primeiro = new No (inserir, this.primeiro);
 
         if (this.ultimo==null)
@@ -164,7 +145,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
             inserir = meuCloneDeX(i);
         else
             inserir = i;
-            
+
         if (this.ultimo==null) // && this.primeiro==null
         {
             this.ultimo   = new No (inserir);
@@ -185,7 +166,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
         X ret = this.primeiro.getInfo();
         if (ret instanceof Cloneable)
             ret = meuCloneDeX (ret);
-            
+
         return ret;
     }
 
@@ -197,11 +178,9 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
         X ret = this.ultimo.getInfo();
         if (ret instanceof Cloneable)
             ret = meuCloneDeX (ret);
-            
+
         return ret;
     }
-    
-    
 
     public void removaDoInicio () throws Exception
     {
@@ -217,7 +196,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
 
         this.primeiro = this.primeiro.getProx();
     }
-    
+
     public void removaDoFim () throws Exception
     {
         if (this.primeiro==null/*&&this.ultimo==null*/)
@@ -239,7 +218,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
         atual.setProx(null);
         this .ultimo=atual;
     }
-    
+
     public void remova (X i) throws Exception
     {
         if (i==null)
@@ -278,16 +257,16 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
             atual=atual.getProx();
         }
     }
-	
+
     // exercicio que deixado para ser feito; feito!
     public void invertaSe ()
     {
 		if (this.primeiro==null)
 		    return; // lista vazia; nao há o que inverter
-		    
+
 		if (this.primeiro.getProx() == null)
 		    return; // lista com um elemento só; nao ha o que inverter
-		    
+
 		// tendo 2 ou mais nós, percorre invertendo
         No anterior=null, atual=this.primeiro, seguinte=atual.getProx();
         while (seguinte!=null)
@@ -297,18 +276,18 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
 			atual    = seguinte;
 			seguinte = seguinte.getProx();
 		}
-		
-		// this.primeiro vira this.ultimo e vice-versa 
+
+		// this.primeiro vira this.ultimo e vice-versa
 		No   backup   = this.primeiro;
 		this.primeiro = this.ultimo;
 		this.ultimo   = backup;
     }
-	
+
     // exercicio que deixado para ser feito; feito!
     public ListaSimplesDesordenada<X> inversao ()
     {
         ListaSimplesDesordenada<X> ret = new ListaSimplesDesordenada<X> ();
-        
+
         for (No atual=this.primeiro; atual!=null; atual=atual.getProx())
             // preferi nao usar this.insiraNoInicio pelo bem da eficiencia,
             // economizando tempo, deixando de validar, e economizando
@@ -319,7 +298,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
 
         return ret;
 	}
-	
+
 	public String toString ()
     {
         String ret="";
@@ -338,7 +317,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
 
         return ret+"";
     }
-    
+
     public boolean equals (Object obj)
     {
         if (this==obj)
@@ -378,7 +357,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
     public int hashCode ()
     {
         final int PRIMO = 13; // qualquer número primo serve
-        
+
         int ret=666; // qualquer inteiro positivo serve
 
         for (No atual=this.primeiro;

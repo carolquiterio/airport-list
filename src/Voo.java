@@ -34,11 +34,11 @@ public class Voo
 
 			this.numeroDoVoo = num;
 		}
-        
-  	 public String toString() 
+
+  	 public String toString()
    	 {
    		 String ret = "";
-   		 
+
    		 try {
    			    ret = "Numero do voo: " + this.numeroDoVoo;
    		 		ret+= ", Cidade: " + this.indiceDaCidadeDeDestino;
@@ -47,10 +47,10 @@ public class Voo
    		 }
    		 catch(Exception err)
    		 {}
-   		 
+
    		 return ret;
    	 }
-        
+
         //equals, hashcod, copia, clone,
 
      //HashCode
@@ -65,7 +65,7 @@ public class Voo
    		    ret = -ret;
 
             return ret;
-   	 } 
+   	 }
       //contrutor de copia
    	 public Voo(Voo modelo)throws Exception
    	 {
