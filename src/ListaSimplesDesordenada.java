@@ -1,6 +1,6 @@
 import java.lang.reflect.*;
 
-public class ListaSimplesDesordenada <X>
+public class ListaSimplesDesordenada <X>  //<X extends Comparable <X>>
 {
     private class No
     {
@@ -63,7 +63,7 @@ public class ListaSimplesDesordenada <X>
 
         while (atual!=null)
         {
-            if (i.equals(atual.getInfo()))
+            if (i.equals(atual.getInfo()))  //colocar o compareTo no lugar no equals
                 return true;
                 
             atual = atual.getProx();
@@ -101,8 +101,6 @@ public class ListaSimplesDesordenada <X>
              ret = meuCloneDeX (ret);
              
          return ret;
-
-    	
     }
 
     public int getQtd ()

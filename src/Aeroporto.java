@@ -1,6 +1,6 @@
 import java.lang.reflect.Method;
 
-public class Aeroporto implements Cloneable
+public class Aeroporto implements  Cloneable //Comparable<Aeroporto>,
 {
 	private String codigo;
 	private String nome;
@@ -166,4 +166,13 @@ public class Aeroporto implements Cloneable
 		 return ret;
      }
 
+	// public int compareTo (Aeroporto aero)
+	 //{
+	//	 if (this.codigo < aero.codigo)
+		//	 return -666;
+		 
+		 
+	 //}
+	 
+	 
 }

@@ -14,27 +14,33 @@ public class Programa
         	lis.insiraNoInicio(new Aeroporto("3", "333"));
         	lis.insiraNoInicio(new Aeroporto("4", "444"));
         	
-        	aero.guardeUmVoo(v);  
-        	aero.guardeUmVoo(new Voo ("segundoVoo", 2));
+        	//aero.guardeUmVoo(v);  
+        	
+        	
+        	
+        	//aero.guardeUmVoo(v);  
+        	//aero.guardeUmVoo(new Voo ("segundoVoo", 2));
         	
         	if(lis.tem(aero))
+        	{
+        		lis.getAtual().guardeUmVoo(v);
+        	}
+        	
+        	
+        	System.out.println(lis);
+        	if(lis.temInformacao("bb"))
         	{
         		//System.out.println(lis.getAtual().listaVoosPorAeroporto());
         	}
         	
-        	if(lis.temInformacao("bb"))
-        	{
-        		System.out.println(lis.getAtual().listaVoosPorAeroporto());
-        	}
-        	
         	//System.out.println(lis.getAtual(aero));
         	
-        	/*System.out.println();
+        	//System.out.println();
         	
         	while (!lis.isVazia())
 			{
-				System.out.println ();
-			}*/
+				System.out.println (lis.getAtual());
+			}
             
             
         }
