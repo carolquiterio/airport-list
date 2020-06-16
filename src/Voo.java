@@ -22,7 +22,7 @@ public class Voo
         public void setIndiceDaCidadeDeDestino (String i) throws Exception
         {
 			if (i == null || i == "")
-				throw new Exception("Õndice da cidade inv·lido!");
+				throw new Exception("√çndice da cidade inv√°lido!");
 
             this.indiceDaCidadeDeDestino = i;
         }
@@ -30,17 +30,17 @@ public class Voo
         public void setNumeroDoVoo (int num) throws Exception
         {
 			if(num < 0)
-				throw new Exception("N˙mero do voo inv·lido!");
+				throw new Exception("N√∫mero do voo inv√°lido!");
 
 			this.numeroDoVoo = num;
 		}
         
-   	 public String toString() 
+  	 public String toString() 
    	 {
    		 String ret = "";
    		 
    		 try {
-   			    ret = " N˙mero no voo: " + this.numeroDoVoo;
+   			    ret = " N√∫mero no voo: " + this.numeroDoVoo;
    		 		ret+= ", Cidade: " + this.indiceDaCidadeDeDestino;
 
    		 		return ret;
@@ -52,4 +52,41 @@ public class Voo
    	 }
         
         //equals, hashcod, copia, clone,
+
+     //HashCode
+     public int hashCode()
+   	 {
+   		 int ret = 666;
+
+   		 ret = ret * 7 + this.indiceDaCidadeDeDestino.hashCode();
+   		 ret = ret * 7 + new Integer(numeroDoVoo).hashCode();
+
+   		 if(ret < 0)
+   		    ret = -ret;
+
+            return ret;
+   	 } 
+      //contrutor de c√≥pia
+   	 public Voo(Voo modelo)throws Exception
+   	 {
+   		 if(modelo == null)
+   		 	throw new Exception("Modelo inv√°lido");
+
+   		 this.indiceDaCidadeDeDestino = modelo.indiceDaCidadeDeDestino;
+   		 this.numeroDoVoo   = modelo.numeroDoVoo;
+   	 }
+   	 //clone
+   	 public Object clone()
+   	 {
+   		Voo ret = null;
+
+   		 try
+   		 {
+   			 ret = new Voo(this);
+   		 }
+   		 catch(Exception erro)
+   		 {}//sei que n√£o vai dar erro
+
+   		 return ret;
+        }
     } //fim da classe Voo
