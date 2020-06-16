@@ -74,18 +74,13 @@ public class Aeroporto implements Cloneable
 		 return this.listaDeVoos.isVazia();
 	 }
 
-     public String listaVoosPorAeroporto(String cod) throws Exception
+     public String listaVoosPorAeroporto() throws Exception
      {  
-		  if (cod==null)
-	            throw new Exception ("Parâmetros inválidos!");
-    	 
+		  
 		  String ret = "";
 		  
-		  if (this.codigo == cod) 
-		  {
-			 ret = this.listaDeVoos.toString();
-		  }
-		  
+		  ret = this.listaDeVoos.toString();
+				  
 		  return ret;
      }
      
@@ -125,7 +120,7 @@ public class Aeroporto implements Cloneable
 
 	 	Aeroporto aero = (Aeroporto)obj;
 
-	 	if(this.codigo.equals(aero.codigo))
+	 	if(!this.codigo.equals(aero.codigo))
 	 		return false;
 	 	if(!this.nome.equals(aero.nome))
 	 		return false;

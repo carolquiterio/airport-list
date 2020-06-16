@@ -8,17 +8,27 @@ public class Programa
         	ListaSimplesDesordenada<Aeroporto> lis = new ListaSimplesDesordenada<Aeroporto> ();
         	Voo v = new Voo ("nome", 1);
         	
-        	Aeroporto aero;       	
-        	lis.insiraNoInicio(aero = new Aeroporto("BB", "BRASILIA"));
+        	Aeroporto aero;
+        	lis.insiraNoInicio(aero = new Aeroporto("bb", "BRASILIA"));  //tem q por o .toLowerCase()
+        	lis.insiraNoInicio(new Aeroporto("2", "222"));
+        	lis.insiraNoInicio(new Aeroporto("3", "333"));
+        	lis.insiraNoInicio(new Aeroporto("4", "444"));
+        	
         	aero.guardeUmVoo(v);  
         	aero.guardeUmVoo(new Voo ("segundoVoo", 2));
         	
-        	//lis.insiraNoFim(new Aeroporto("oi", "oi"));
-            
-        	//System.out.println (lis);
-            //aero.removaUmVoo(v);
-            System.out.println(aero.listaVoosPorAeroporto("bb"));
-            
+        	if(lis.tem(aero))
+        	{
+        		//System.out.println(lis.getAtual().listaVoosPorAeroporto());
+        	}
+        	
+        	if(lis.temInformacao("bb"))
+        	{
+        		System.out.println(lis.getAtual().listaVoosPorAeroporto());
+        	}
+        	
+        	//System.out.println(lis.getAtual(aero));
+        	
         	/*System.out.println();
         	
         	while (!lis.isVazia())

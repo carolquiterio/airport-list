@@ -40,7 +40,7 @@ public class Voo
    		 String ret = "";
    		 
    		 try {
-   			    ret = "Numero no voo: " + this.numeroDoVoo;
+   			    ret = "Numero do voo: " + this.numeroDoVoo;
    		 		ret+= ", Cidade: " + this.indiceDaCidadeDeDestino;
 
    		 		return ret;
