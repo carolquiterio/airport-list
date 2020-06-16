@@ -8,8 +8,8 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 
 	public Aeroporto(String codigo, String nome)throws Exception
 	{
-		 this.setCodigo(codigo.toLowerCase());
-		 this.setNome  (nome.toLowerCase());
+		 this.setCodigo(codigo.toUpperCase());
+		 this.setNome  (nome.toUpperCase());
 		 this.listaDeVoos = new ListaSimplesDesordenada<Voo> ();
 	}
 	//setters
@@ -28,14 +28,6 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 		 this.nome = nome;
      }
 
-	 public void setListaVoos(Voo voo) throws Exception
-	 {
-		 if (voo == null)
-			 throw new Exception("Voo inválido!");
-
-		 this.listaDeVoos = new ListaSimplesDesordenada<Voo> ();
-	 }
-
      //getters
 	 public String getCodigo()
      {
@@ -49,15 +41,13 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 
 	 public Voo getVooAtual() throws Exception
 	 {
-	     if (this.listaDeVoos.getDoInicio==null/*&&this.ultimo==null)*/)
+	     if (this.listaDeVoos.getDoInicio()==null/*&&this.ultimo==null)*/)
 	         throw new Exception ("Nada a obter");
 
-	     Voo ret = this.listaVoos.getAtual;
+	     Voo ret = this.listaDeVoos.getAtual();
 
 	     return ret;
     }
-
-
 
 	 public void guardeUmVoo(Voo voo)throws Exception
 	 {
