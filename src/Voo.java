@@ -1,15 +1,15 @@
 public class Voo
     {
-        private String indiceDaCidadeDeDestino;
+        private int indiceDaCidadeDeDestino;
         private int numeroDoVoo;
 
-        public Voo (String i, int num)
+        public Voo (int numVoo, int destino)
         {
-            this.indiceDaCidadeDeDestino = i;
-            this.numeroDoVoo = num;
+            this.indiceDaCidadeDeDestino = destino;
+            this.numeroDoVoo = numVoo;
         }
 
-        public String getIndiceDaCidadeDeDestino ()
+        public int getIndiceDaCidadeDeDestino ()
         {
             return this.indiceDaCidadeDeDestino;
         }
@@ -19,17 +19,17 @@ public class Voo
 			return this.numeroDoVoo;
 		}
 
-        public void setIndiceDaCidadeDeDestino (String i) throws Exception
+        public void setIndiceDaCidadeDeDestino (int num) throws Exception
         {
-			if (i == null || i == "")
+			if (num <= 0)
 				throw new Exception("Indice da cidade invalido!");
 
-            this.indiceDaCidadeDeDestino = i;
+            this.indiceDaCidadeDeDestino = num;
         }
 
         public void setNumeroDoVoo (int num) throws Exception
         {
-			if(num < 0)
+			if(num <= 0)
 				throw new Exception("Numero do voo invalido!");
 
 			this.numeroDoVoo = num;
@@ -41,7 +41,7 @@ public class Voo
 
    		 try {
    			    ret = "Numero do voo: " + this.numeroDoVoo;
-   		 		ret+= ", Cidade: " + this.indiceDaCidadeDeDestino;
+   		 		ret+= ", Cidade de destino: " + this.indiceDaCidadeDeDestino;
 
    		 		return ret;
    		 }
@@ -58,7 +58,7 @@ public class Voo
    	 {
    		 int ret = 666;
 
-   		 ret = ret * 7 + this.indiceDaCidadeDeDestino.hashCode();
+   		 ret = ret * 7 + new Integer(indiceDaCidadeDeDestino).hashCode();
    		 ret = ret * 7 + new Integer(numeroDoVoo).hashCode();
 
    		 if(ret < 0)

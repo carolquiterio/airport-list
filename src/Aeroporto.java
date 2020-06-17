@@ -4,12 +4,14 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 {
 	private String codigo;
 	private String nome;
+	private int numero;
 	private ListaSimplesDesordenada<Voo> listaDeVoos;
 
-	public Aeroporto(String codigo, String nome)throws Exception
+	public Aeroporto(String codigo, String nome, int numero)throws Exception
 	{
 		 this.setCodigo(codigo.toUpperCase());
 		 this.setNome  (nome.toUpperCase());
+		 this.setNumero(numero);
 		 this.listaDeVoos = new ListaSimplesDesordenada<Voo> ();
 	}
 	//setters
@@ -27,7 +29,13 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 
 		 this.nome = nome;
      }
+	public void setNumero(int num) throws Exception
+	 {
+		 if(num <= 0)
+			throw new Exception("Numero invalido!");
 
+		 this.numero = numero;
+     }
      //getters
 	 public String getCodigo()
      {
@@ -39,12 +47,17 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 		 return this.nome;
 	 }
 
-	 public Voo getVooAtual() throws Exception
+	 public int getNumero()
+	 {
+		 return this.numero;
+	 }
+
+	 public Voo getVooComParam(int i) throws Exception
 	 {
 	     if (this.listaDeVoos.getDoInicio()==null/*&&this.ultimo==null)*/)
 	         throw new Exception ("Nada a obter");
 
-	     Voo ret = this.listaDeVoos.getAtual();
+	     Voo ret = this.listaDeVoos.getComParam(i);
 
 	     return ret;
     }
@@ -66,11 +79,6 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 		  this.listaDeVoos.remova(voo);
 	 }
 
-	 public boolean eVazia()
-     {
-		 return this.listaDeVoos.isVazia();
-	 }
-
      public String listaVoos() throws Exception
      {
 
@@ -87,7 +95,9 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 		 String ret = "";
 
 		 try {
-			    ret = "Código Aeroporto: " + this.codigo;
+
+			    ret = "Número: " + this.numero;
+			    ret+= "Código Aeroporto: " + this.codigo;
 		 		ret+= ", Cidade: " + this.nome;
 		 		ret+= ", Voos: " + this.listaDeVoos.toString();
 
@@ -116,6 +126,8 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 	 		return false;
 	 	if(!this.nome.equals(aero.nome))
 	 		return false;
+		if(this.numero!=aero.numero)
+			return false;
 
 	 	return true;
 	 }
@@ -126,6 +138,7 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 
 		 ret = ret * 7 + this.codigo.hashCode();
 		 ret = ret * 7 + this.nome.hashCode();
+		 ret = ret * 7 + new Integer (this.numero).hashCode();
 
 		 if(ret < 0)
 		    ret = -ret;
@@ -142,6 +155,7 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 		 this.listaDeVoos = (modelo.listaDeVoos);
 		 this.codigo = modelo.codigo;
 		 this.nome   = modelo.nome;
+		 this.numero = modelo.numero;
 	 }
 	 //clone
 	 public Object clone()
@@ -157,9 +171,4 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 
 		 return ret;
      }
-
-	// public int compareTo (Aeroporto aero)
-	 //{
-		// return this.codigo.compareTo(aero.codigo);
-	 //}
 }

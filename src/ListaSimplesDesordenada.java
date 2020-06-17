@@ -182,6 +182,28 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
         return ret;
     }
 
+    public X getComParam(int num) throws Exception
+    {
+		if (this.primeiro==null/*&&this.ultimo==null)*/)
+            throw new Exception ("Nada a obter");
+
+        X ret = this.ultimo.getInfo();
+
+        int comp = 0;
+        for (No atual=this.primeiro; atual!=null; atual=atual.getProx())
+        {
+    		comp = comp + 1;
+    		if (comp == num)
+    		{
+    			ret = atual.getInfo();
+			}
+		}
+		if (ret instanceof Cloneable)
+            ret = meuCloneDeX (ret);
+
+		return ret;
+	}
+
     public void removaDoInicio () throws Exception
     {
         if (this.primeiro==null /*&& this.ultimo==null*/)

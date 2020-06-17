@@ -25,27 +25,30 @@ public class Programa
 
 				if (entrada == 1)
 				{
-					System.out.println("Digite o código do aeroporto e o nome!");
+					System.out.println("Digite o numero, o código e o nome do aeroporto!");
+					int numero = in.nextInt();
 					String cod = in.next();
 					String nom = in.next();
-					lis.insiraNoInicio(new Aeroporto(cod, nom));
+					lis.insiraNoInicio(new Aeroporto(cod, nom, numero));
 					System.out.println("Aeroporto cadastrado!");
 				}
 
 				if (entrada == 2)
 				{
-					System.out.println("Digite o código do aeroporto e o número do voo!");
-					String cod = in.next();
-					int num = in.nextInt();
-					lis.getDoInicio().guardeUmVoo(new Voo(cod, num));
+					System.out.println("Digite o numero do aeroporto de origem, o número do de destino e o número do voo!");
+					int numeroOrigem = in.nextInt();
+					int numeroDestino = in.nextInt();
+					int numVoo = in.nextInt();
+					lis.getComParam(numeroOrigem).guardeUmVoo(new Voo(numeroDestino, numVoo));
 					System.out.println("Voo cadastrado!");
 				}
 
 				if (entrada == 3)
 				{
-					System.out.println("Digite o número do voo que deseja remover!");
-					int num = in.nextInt();
-					lis.getAtual().removaUmVoo(lis.getAtual().getVooAtual());  //verificar
+					System.out.println("Digite o número do aeroporto e o número do voo que deseja remover!");
+					int numeroAero = in.nextInt();
+					int numeroVoo = in.nextInt();
+					lis.getComParam(numeroAero).removaUmVoo(lis.getComParam(numeroAero).getVooComParam(numeroVoo));
 					System.out.println("Voo removido!");
 				}
 
@@ -53,14 +56,15 @@ public class Programa
 				{
 					System.out.println("Digite o número no aeroporto que deseja consultar!");
 					int num = in.nextInt();
-					System.out.println(lis.getDoInicio().listaVoos());
+					System.out.println(lis.getComParam(num).listaVoos());
 				}
 
 				if (entrada == 5)
 				{
-					for (int i = 0; i < lis.getQtd(); i++)
+					int qtd = lis.getQtd();
+					for (int i = 0; i < qtd; i++)
 					{
-						System.out.println(lis.getDoInicio().listaVoos());
+						System.out.println(lis.getComParam(i).listaVoos());
 
 					}
 				}
