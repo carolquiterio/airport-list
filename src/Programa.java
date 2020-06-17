@@ -16,7 +16,7 @@ public class Programa
 				System.out.println("1 - cadastrar um novo aeroporto");
 				System.out.println("2 - cadastrar um voo");
 				System.out.println("3 - remover o voo");
-				System.out.println("4 - listar na tela todos os números que saem de determinado aeroporto");
+				System.out.println("4 - listar na tela todos os voos que saem de determinado aeroporto");
 				System.out.println("5 - listar todos os voos");
 
 				entrada = in.nextInt();
@@ -62,6 +62,7 @@ public class Programa
 				if (entrada == 5)
 				{
 					int qtd = lis.getQtd();
+
 					for (int i = 0; i < qtd; i++)
 					{
 						System.out.println(lis.getComParam(i).listaVoos());
@@ -78,3 +79,4 @@ public class Programa
         }
     }
 }
+8

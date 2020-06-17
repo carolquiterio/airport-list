@@ -1,6 +1,6 @@
 import java.lang.reflect.*;
 
-public class ListaSimplesDesordenada <X > //xtends Comparable<X>
+public class ListaSimplesDesordenada <X>
 {
     private class No
     {
@@ -40,13 +40,12 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
         }
     } //fim da classe No
 
-    private No primeiro, ultimo, atual;
+    private No primeiro, ultimo;
 
     public ListaSimplesDesordenada ()
     {
 		this.primeiro = null;
 		this.ultimo   = null;
-		this.atual = null;
 	}
 
     public boolean isVazia ()
@@ -59,7 +58,7 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
 		if (i==null)
 		    throw new Exception ("Informacao ausente");
 
-        atual=this.primeiro;
+         No atual=this.primeiro;
 
         while (atual!=null)
         {
@@ -70,18 +69,6 @@ public class ListaSimplesDesordenada <X > //xtends Comparable<X>
         }
 
         return false;
-    }
-
-    public X getAtual() throws Exception
-    {
-    	 if (this.primeiro==null/*&&this.ultimo==null)*/)
-             throw new Exception ("Nada a obter");
-
-         X ret = this.atual.getInfo();
-         if (ret instanceof Cloneable)
-             ret = meuCloneDeX (ret);
-
-         return ret;
     }
 
     public int getQtd ()
