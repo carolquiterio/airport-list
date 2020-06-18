@@ -1,8 +1,13 @@
 import java.lang.reflect.*;
 
-public class ListaSimplesDesordenada <X>
+public class ListaSimplesOrdenada <X extends Comparable<X>>
+// X extends Comparable<X> indica que só serão aceitas, como
+// parâmetros da classe ListaSimplesOrdenada, classe que herdem
+// da interface Comparable<X>, ou seja, apenas Xs comparáveis
+// com outros Xs serão aceitos; isso garante que posso usar o
+// método compareTo com objetos chamantes do tipo X.
 {
-    private class No
+    protected class No
     {
         private X  info;
         private No prox;
@@ -40,52 +45,14 @@ public class ListaSimplesDesordenada <X>
         }
     } //fim da classe No
 
-    private No primeiro, ultimo;
+    protected No primeiro, ultimo;
 
-    public ListaSimplesDesordenada ()
+    public ListaSimplesOrdenada ()
     {
-		this.primeiro = null;
-		this.ultimo   = null;
-	}
-
-    public boolean isVazia ()
-    {
-        return this.primeiro==null/*&&this.ultimo==null*/;
+        this.primeiro=this.ultimo=null;
     }
 
-    public  boolean tem (X i) throws Exception
-    {
-		if (i==null)
-		    throw new Exception ("Informacao ausente");
-
-         No atual=this.primeiro;
-
-        while (atual!=null)
-        {
-            if (i.equals(atual.getInfo()))  //colocar o compareTo no lugar no equals
-                return true;
-
-            atual = atual.getProx();
-        }
-
-        return false;
-    }
-
-    public int getQtd ()
-    {
-        No  atual=this.primeiro;
-        int ret  =0;
-
-        while (atual!=null)
-        {
-            ret++;
-            atual = atual.getProx();
-        }
-
-        return ret;
-    }
-
-    private X meuCloneDeX (X x)
+    protected X meuCloneDeX (X x)
     {
       //return (X)x.clone();
 
@@ -105,95 +72,61 @@ public class ListaSimplesDesordenada <X>
         return ret;
     }
 
-    public void insiraNoInicio (X i) throws Exception
+    // retirei o método public void insiraNoInicio (X i) throws Exception
+    // pois ele não faz sentido neste tipo de lista
+
+    // retirei o método public void insiraNoFim (X i) throws Exception
+    // pois ele não faz sentido neste tipo de lista
+
+    // novo método que insere, mantendo a ordem
+    public void insira (X i) throws Exception
     {
         if (i==null)
             throw new Exception ("Informacao ausente");
 
-        X inserir=null;
+        X info;
         if (i instanceof Cloneable)
-            inserir = meuCloneDeX(i);
+            info = meuCloneDeX (i);
         else
-            inserir = i;
+            info = i;
 
-        this.primeiro = new No (inserir, this.primeiro);
-
-        if (this.ultimo==null)
-            this.ultimo=this.primeiro;
-    }
-
-    public void insiraNoFim (X i) throws Exception
-    {
-        if (i==null)
-            throw new Exception ("Informacao ausente");
-
-        X inserir=null;
-        if (i instanceof Cloneable)
-            inserir = meuCloneDeX(i);
-        else
-            inserir = i;
-
-        if (this.ultimo==null) // && this.primeiro==null
+        if (this.primeiro==null)
         {
-            this.ultimo   = new No (inserir);
-            this.primeiro = this.ultimo;
+            this.primeiro = new No (info,null);
+            return;
         }
-        else
+
+        int comp=info.compareTo(this.primeiro.getInfo());
+
+        if (comp<0)
         {
-            this.ultimo.setProx (new No (inserir));
-            this.ultimo = this.ultimo.getProx();
+            this.primeiro = new No (info,this.primeiro);
+            return;
         }
-    }
 
-    public X getDoInicio () throws Exception
-    {
-        if (this.primeiro==null/*&&this.fim==null)*/)
-            throw new Exception ("Nada a obter");
+        if (comp==0)
+            throw new Exception ("Informacao repetida");
 
-        X ret = this.primeiro.getInfo();
-        if (ret instanceof Cloneable)
-            ret = meuCloneDeX (ret);
+        No atual=this.primeiro;
 
-        return ret;
-    }
-
-    public X getDoFim () throws Exception
-    {
-        if (this.primeiro==null/*&&this.ultimo==null)*/)
-            throw new Exception ("Nada a obter");
-
-        X ret = this.ultimo.getInfo();
-        if (ret instanceof Cloneable)
-            ret = meuCloneDeX (ret);
-
-        return ret;
-    }
-
-    public X getComParam(int num) throws Exception
-    {
-		if (this.primeiro==null/*&&this.ultimo==null)*/)
-            throw new Exception ("A lista está vazia!");
-
-        X ret = null;
-
-        int comp = 0;
-        for (No atual=this.primeiro; atual!=null; atual=atual.getProx())
+        for(;;)
         {
-    		comp = comp + 1;
-    		if (comp == num)
-    		{
-    			ret = atual.getInfo();
-			}
-		}
+            if (atual.getProx()==null)
+                break;
 
-		if (ret instanceof Cloneable)
-            ret = meuCloneDeX (ret);
+            comp=i.compareTo(atual.getProx().getInfo());
 
-		if(ret == null)
-			throw new Exception("Esse item não existe!");
+            if (comp==0)
+                throw new Exception ("Informacao repetida");
 
-		return ret;
-	}
+            if (comp<0)
+                break;
+
+            atual=atual.getProx();
+        }
+
+        atual.setProx (new No (info,atual.getProx()));
+    }
 
     public void removaDoInicio () throws Exception
     {
@@ -271,50 +204,102 @@ public class ListaSimplesDesordenada <X>
         }
     }
 
-    // exercicio que deixado para ser feito; feito!
-    public void invertaSe ()
+    public boolean tem (X i) throws Exception
     {
-		if (this.primeiro==null)
-		    return; // lista vazia; nao há o que inverter
+        if (i==null)
+            throw new Exception ("Informacao ausente");
 
-		if (this.primeiro.getProx() == null)
-		    return; // lista com um elemento só; nao ha o que inverter
+        No atual=this.primeiro;
 
-		// tendo 2 ou mais nós, percorre invertendo
-        No anterior=null, atual=this.primeiro, seguinte=atual.getProx();
-        while (seguinte!=null)
+        while (atual!=null)
         {
-			atual.setProx (anterior);
-			anterior = atual;
-			atual    = seguinte;
-			seguinte = seguinte.getProx();
-		}
+            if (i.equals(atual.getInfo()))
+                return true;
 
-		// this.primeiro vira this.ultimo e vice-versa
-		No   backup   = this.primeiro;
-		this.primeiro = this.ultimo;
-		this.ultimo   = backup;
+            atual = atual.getProx();
+        }
+
+        return false;
     }
 
-    // exercicio que deixado para ser feito; feito!
-    public ListaSimplesDesordenada<X> inversao ()
+    public int getQtd ()
     {
-        ListaSimplesDesordenada<X> ret = new ListaSimplesDesordenada<X> ();
+        No  atual=this.primeiro;
+        int ret  =0;
 
-        for (No atual=this.primeiro; atual!=null; atual=atual.getProx())
-            // preferi nao usar this.insiraNoInicio pelo bem da eficiencia,
-            // economizando tempo, deixando de validar, e economizando
-            // memória e tempo, deixando de clonar; e fica a pergunta:
-            // entendem porque não é necessario clonar? Nao entendendo,
-            // monitoria!
-            ret.primeiro = new No (atual.getInfo(),ret.primeiro);
+        while (atual!=null)
+        {
+            ret++;
+            atual = atual.getProx();
+        }
 
         return ret;
+    }
+
+    public X getDoInicio () throws Exception
+    {
+        if (this.primeiro==null/*&&this.fim==null)*/)
+            throw new Exception ("Nada a obter");
+
+        X ret = this.primeiro.getInfo();
+        if (ret instanceof Cloneable)
+            ret = meuCloneDeX (ret);
+
+        return ret;
+    }
+
+    public X getDoFim () throws Exception
+    {
+        if (this.primeiro==null/*&&this.ultimo==null)*/)
+            throw new Exception ("Nada a obter");
+
+        X ret = this.ultimo.getInfo();
+        if (ret instanceof Cloneable)
+            ret = meuCloneDeX (ret);
+
+        return ret;
+    }
+
+ 	public X getComParam(int num) throws Exception
+    {
+		if (this.primeiro==null/*&&this.ultimo==null)*/)
+            throw new Exception ("A lista está vazia!");
+
+        X ret = null;
+
+        int comp = 0;
+        for (No atual=this.primeiro; atual!=null; atual=atual.getProx())
+        {
+    		comp = comp + 1;
+    		if (comp == num)
+    		{
+    			ret = atual.getInfo();
+			}
+		}
+
+		if (ret instanceof Cloneable)
+            ret = meuCloneDeX (ret);
+
+		if(ret == null)
+			throw new Exception("Esse item não existe!");
+
+		return ret;
 	}
 
-	public String toString ()
+    public boolean isvazia ()
     {
-        String ret="";
+        return this.primeiro==null/*&&this.ultimo==null*/;
+    }
+
+    // retirei o método public void invertaSe ()
+    // pois ele não faz sentido neste tipo de lista
+
+    // retirei o método public ListaSimplesDesordenada<X> inversao ()
+    // pois ele não faz sentido neste tipo de lista
+
+    public String toString ()
+    {
+        String ret="[";
 
         No atual=this.primeiro;
 
@@ -323,12 +308,12 @@ public class ListaSimplesDesordenada <X>
             ret=ret+atual.getInfo();
 
             if (atual!=this.ultimo)
-                ret=ret+"\n";
+                ret=ret+",";
 
             atual=atual.getProx();
         }
 
-        return ret+"";
+        return ret+"]";
     }
 
     public boolean equals (Object obj)
@@ -342,8 +327,8 @@ public class ListaSimplesDesordenada <X>
         if (this.getClass()!=obj.getClass())
             return false;
 
-        ListaSimplesDesordenada<X> lista =
-       (ListaSimplesDesordenada<X>)obj;
+        ListaSimplesOrdenada<X> lista =
+       (ListaSimplesOrdenada<X>)obj;
 
         No atualThis =this .primeiro;
         No atualLista=lista.primeiro;
@@ -384,7 +369,7 @@ public class ListaSimplesDesordenada <X>
     }
 
     // construtor de copia
-    public ListaSimplesDesordenada (ListaSimplesDesordenada<X> modelo) throws Exception
+    public ListaSimplesOrdenada (ListaSimplesOrdenada<X> modelo) throws Exception
     {
         if (modelo==null)
             throw new Exception ("Modelo ausente");
@@ -409,11 +394,11 @@ public class ListaSimplesDesordenada <X>
 
     public Object clone ()
     {
-        ListaSimplesDesordenada<X> ret=null;
+        ListaSimplesOrdenada<X> ret=null;
 
         try
         {
-            ret = new ListaSimplesDesordenada (this);
+            ret = new ListaSimplesOrdenada (this);
         }
         catch (Exception erro)
         {} // sei que this NUNCA é null e o contrutor de copia da erro quando seu parametro é null
