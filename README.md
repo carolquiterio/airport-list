@@ -17,7 +17,7 @@
 <br>
 
 
-## :Projeto: Technologies
+## :rocket: Technologies
 
 This project was developed with [Java](https://www.oracle.com/technetwork/pt/java/javase/downloads/index.html)
 
