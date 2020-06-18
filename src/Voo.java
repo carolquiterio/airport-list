@@ -1,4 +1,4 @@
-public class Voo
+public class Voo implements Comparable<Voo>, Cloneable
     {
         private int indiceDaCidadeDeDestino;
         private int numeroDoVoo;
@@ -88,5 +88,23 @@ public class Voo
    		 {}//sei que nao vai dar erro
 
    		 return ret;
-        }
+     }
+
+     public int compareTo(Voo voo)
+     {
+		 if (this.numeroDoVoo < voo.numeroDoVoo)
+		 	return -666;
+
+		 if (this.numeroDoVoo > voo.numeroDoVoo)
+		 	return 666;
+
+		 if (this.indiceDaCidadeDeDestino < voo.indiceDaCidadeDeDestino)
+		 	return -666;
+
+		 if (this.indiceDaCidadeDeDestino > voo.indiceDaCidadeDeDestino)
+		 	return 666;
+
+	 	 return 0;
+	 }
+
     } //fim da classe Voo

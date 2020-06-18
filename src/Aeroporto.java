@@ -1,6 +1,6 @@
 import java.lang.reflect.Method;
 
-public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
+public class Aeroporto implements Comparable<Aeroporto>, Cloneable
 {
 	private String codigo;
 	private String nome;
@@ -29,12 +29,13 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 
 		 this.nome = nome;
      }
+
 	public void setNumero(int num) throws Exception
 	 {
 		 if(num <= 0)
 			throw new Exception("Numero invalido!");
 
-		 this.numero = numero;
+		 this.numero = num;
      }
      //getters
 	 public String getCodigo()
@@ -67,6 +68,7 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 		  if (voo==null)
             throw new Exception ("Falta o que guardar");
 
+
           this.listaDeVoos.insiraNoFim(voo);
 
 	 }
@@ -81,6 +83,8 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 
      public String listaVoos() throws Exception
      {
+		  if (this.listaDeVoos.isVazia())
+		  	throw new Exception("Não há nenhum voo para mostrar!");
 
 		  String ret = "";
 
@@ -97,7 +101,7 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 		 try {
 
 			    ret = "Número: " + this.numero;
-			    ret+= "Código Aeroporto: " + this.codigo;
+			    ret+= ", Código Aeroporto: " + this.codigo;
 		 		ret+= ", Cidade: " + this.nome;
 		 		ret+= ", Voos: " + this.listaDeVoos.toString();
 
@@ -117,8 +121,8 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 	 	if(obj == null)
 	 		return false;
 
-	 	//if(this.getClass() != obj.getClas())
-	 	//	return false;
+	 	if(this.getClass() != obj.getClass())
+	 		return false;
 
 	 	Aeroporto aero = (Aeroporto)obj;
 
@@ -171,4 +175,27 @@ public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 
 		 return ret;
      }
+
+     public int compareTo(Aeroporto aero)
+     {
+		 if (this.numero < aero.numero)
+		 	return -666;
+
+		 if (this.numero > aero.numero)
+		 	return 666;
+
+		 if(this.nome.compareTo(aero.nome) > 0);
+		 	return 666;
+
+		 if(this.nome.compareTo(aero.nome) < 0);
+		 	return -666;
+
+		 if(this.codigo.compareTo(aero.codigo) > 0);
+		 	return 666;
+
+		 if(this.codigo.compareTo(aero.codigo) < 0);
+		 	return -666;
+
+		 return 0;
+	 }
 }
