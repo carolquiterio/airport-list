@@ -1,21 +1,6 @@
 <h1 align="center">
     Airport List data structure
 </h1>
- <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=7159c1&labelColor=000000" alt="PRs welcome!" />
-
-  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=7159c1&labelColor=000000">
-</p>
-
-<p align="center">
-  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Licença</a>
-</p>
-
-<br>
-
 
 ## :rocket: Technologies
 
@@ -27,12 +12,12 @@ Airport list is data structure to register airports and the flies made between t
 
 ## 🤔 How to contribute
 
-- Faça um fork desse repositório;
-- Cria uma branch com a sua feature: `git checkout -b minha-feature`;
-- Faça commit das suas alterações: `git commit -m 'feat: Minha nova feature'`;
-- Faça push para a sua branch: `git push origin minha-feature`.
+- Fork this repository;
+- Create a branch with your feature: `git checkout -b my-feature`;
+- Make a commit with your changes: `git commit -m 'feat: My new feature'`;
+- Make a push to your branch: `git push origin my-feature`.
 
-Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
+After the merge of your pull request you can delete your branch.
 
 ## :memo: License
 
