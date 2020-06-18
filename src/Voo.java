@@ -70,7 +70,7 @@ public class Voo implements Comparable<Voo>, Cloneable
 
 	 	Voo voo = (Voo)obj;
 
-		if(!this.indiceDaCidadeDeDestino.equals(voo.indiceDaCidadeDeDestino))
+		if(this.indiceDaCidadeDeDestino!=(voo.indiceDaCidadeDeDestino))
 	 		return false;
 
 	 	if(this.numeroDoVoo!=voo.numeroDoVoo)

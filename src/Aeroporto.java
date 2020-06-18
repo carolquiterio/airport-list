@@ -187,15 +187,15 @@ public class Aeroporto implements Comparable<Aeroporto>, Cloneable
 		 if(this.nome.compareTo(aero.nome) > 0);
 		 	return 666;
 
-		 if(this.nome.compareTo(aero.nome) < 0);
-		 	return -666;
+		// if(this.nome.compareTo(aero.nome) < 0);
+		 //	return -666;
 
-		 if(this.codigo.compareTo(aero.codigo) > 0);
-		 	return 666;
+		// if(this.codigo.compareTo(aero.codigo) > 0);
+		 //	return 666;
 
-		 if(this.codigo.compareTo(aero.codigo) < 0);
-		 	return -666;
+		 //if(this.codigo.compareTo(aero.codigo) < 0);
+		 	//return -666;
 
-		 return 0;
+		 //return 0;
 	 }
 }

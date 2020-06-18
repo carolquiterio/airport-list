@@ -52,7 +52,7 @@ public class Programa
 
 			//		if(!lis.tem(lis.getComParam(numeroDestino)))
 			//					System.out.println("Insira uma cidade válida!");
-1
+
 			//		lis.getComParam(numeroOrigem).guardeUmVoo(new Voo(numeroDestino, numVoo));
 
 					lisOrd.getComParam(numeroOrigem).guardeUmVoo(new Voo (numeroDestino, numVoo));
