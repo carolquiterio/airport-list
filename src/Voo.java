@@ -22,6 +22,7 @@ public class Voo
         public void setIndiceDaCidadeDeDestino (String i) throws Exception
         {
 			if (i == null || i == "")
+
 				throw new Exception("Indice da cidade invalido!");
 
             this.indiceDaCidadeDeDestino = i;
@@ -50,9 +51,29 @@ public class Voo
    		 
    		 return ret;
    	 }
-        
-        //equals, hashcod, copia, clone,
+  	 //equals
+  	public boolean equals(Object obj)
+	 {
+	 	if(this == obj)
+	 		return false;
 
+	 	if(obj == null)
+	 		return false;
+
+	 	//if(this.getClass() != obj.getClas())
+	 	//	return false;
+
+	 	Voo voo = (Voo)obj;
+
+		if(!this.indiceDaCidadeDeDestino.equals(voo.indiceDaCidadeDeDestino))
+	 		return false;
+
+	 	if(this.numeroDoVoo!=voo.numeroDoVoo)
+            return false;
+	 
+	 	return true;
+	 }
+        
      //HashCode
      public int hashCode()
    	 {
@@ -70,7 +91,7 @@ public class Voo
    	 public Voo(Voo modelo)throws Exception
    	 {
    		 if(modelo == null)
-   		 	throw new Exception("Modelo invalido");
+     	throw new Exception("Modelo inválido");
 
    		 this.indiceDaCidadeDeDestino = modelo.indiceDaCidadeDeDestino;
    		 this.numeroDoVoo   = modelo.numeroDoVoo;
@@ -85,7 +106,9 @@ public class Voo
    			 ret = new Voo(this);
    		 }
    		 catch(Exception erro)
+
    		 {}//sei que nao vai dar erro
+  
 
    		 return ret;
         }
