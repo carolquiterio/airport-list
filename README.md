@@ -1,11 +1,6 @@
-# airport-list
-Project for the school subject data structure l
-
-<h4 align="center">
-  🚀 Airport List
-</h4>
-
-<p align="center">
+<h1 align="center">
+    Airport List data structure
+</h1>
  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=7159c1&labelColor=000000" alt="PRs welcome!" />
 
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=7159c1&labelColor=000000">
@@ -22,7 +17,7 @@ Project for the school subject data structure l
 <br>
 
 
-## :Project: Technologies
+## :Projeto: Technologies
 
 This project was developed with [Java](https://www.oracle.com/technetwork/pt/java/javase/downloads/index.html)
 
