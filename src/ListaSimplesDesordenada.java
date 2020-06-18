@@ -1,6 +1,6 @@
 import java.lang.reflect.*;
 
-public class ListaSimplesDesordenada <X>
+public class ListaSimplesDesordenada <X > //xtends Comparable<X>  
 {
     private class No
     {
@@ -40,12 +40,13 @@ public class ListaSimplesDesordenada <X>
         }
     } //fim da classe No
 
-    private No primeiro, ultimo;
+    private No primeiro, ultimo, atual;
     
     public ListaSimplesDesordenada ()
     {
 		this.primeiro = null;
 		this.ultimo   = null;
+		this.atual = null;
 	}
 
     public boolean isVazia ()
@@ -53,12 +54,30 @@ public class ListaSimplesDesordenada <X>
         return this.primeiro==null/*&&this.ultimo==null*/;
     }
     
-    public boolean tem (X i) throws Exception
+    public  boolean tem (X i) throws Exception
     {
 		if (i==null)
 		    throw new Exception ("Informacao ausente");
 		
-        No atual=this.primeiro;
+        atual=this.primeiro;
+
+        while (atual!=null)
+        {
+            if (i.equals(atual.getInfo()))  //colocar o compareTo no lugar no equals
+                return true;
+                
+            atual = atual.getProx();
+        }
+        
+        return false;
+    }
+    
+    public  boolean temInformacao (X i) throws Exception
+    {
+		if (i==null)
+		    throw new Exception ("Informacao ausente");
+		
+        atual=this.primeiro;
 
         while (atual!=null)
         {
@@ -69,6 +88,19 @@ public class ListaSimplesDesordenada <X>
         }
         
         return false;
+    }
+     
+    
+    public X getAtual() throws Exception
+    {
+    	 if (this.primeiro==null/*&&this.ultimo==null)*/)
+             throw new Exception ("Nada a obter");
+    	 
+         X ret = this.atual.getInfo();
+         if (ret instanceof Cloneable)
+             ret = meuCloneDeX (ret);
+             
+         return ret;
     }
 
     public int getQtd ()
@@ -168,6 +200,8 @@ public class ListaSimplesDesordenada <X>
             
         return ret;
     }
+    
+    
 
     public void removaDoInicio () throws Exception
     {

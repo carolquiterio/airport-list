@@ -1,6 +1,6 @@
 import java.lang.reflect.Method;
 
-public class Aeroporto implements Cloneable
+public class Aeroporto implements Cloneable // Comparable<Aeroporto>,
 {
 	private String codigo;
 	private String nome;
@@ -8,8 +8,8 @@ public class Aeroporto implements Cloneable
 
 	public Aeroporto(String codigo, String nome)throws Exception
 	{
-		 this.setCodigo(codigo);
-		 this.setNome  (nome);
+		 this.setCodigo(codigo.toLowerCase());
+		 this.setNome  (nome.toLowerCase());
 		 this.listaDeVoos = new ListaSimplesDesordenada<Voo> ();
 	}
 	//setters
@@ -61,7 +61,7 @@ public class Aeroporto implements Cloneable
 
 	 }
 	 
-	 public void removaUmVoo(int numero)throws Exception
+	 public void removaUmVoo(Voo voo)throws Exception
 	 {
 		  if (this.listaDeVoos.isVazia())
 		       throw new Exception ("Nada a remover");
@@ -74,23 +74,20 @@ public class Aeroporto implements Cloneable
 		 return this.listaDeVoos.isVazia();
 	 }
 
-     /*public String listaVoosPorAeroporto(Aeroporto aero) throws Exception
+     public String listaVoosPorAeroporto() throws Exception
      {  
-		  if (aero==null)
-	            throw new Exception ("Parâmetros inválidos!");
-    	 
-		  if (this == aero) 
-		  {
-			 return aero.listaDeVoos.toString();
-		  }
 		  
-		  return("Este aeroporto não existe!");
+		  String ret = "";
+		  
+		  ret = this.listaDeVoos.toString();
+				  
+		  return ret;
      }
      
      public ListaSimplesDesordenada listaVoos() throws Exception
      {  
 		  return this.listaDeVoos;
-     }*/
+     }
      
 	 //toString
 	 public String toString() 
@@ -123,7 +120,7 @@ public class Aeroporto implements Cloneable
 
 	 	Aeroporto aero = (Aeroporto)obj;
 
-	 	if(this.codigo.equals(aero.codigo))
+	 	if(!this.codigo.equals(aero.codigo))
 	 		return false;
 	 	if(!this.nome.equals(aero.nome))
 	 		return false;
@@ -169,4 +166,10 @@ public class Aeroporto implements Cloneable
 		 return ret;
      }
 
+	// public int compareTo (Aeroporto aero)
+	 //{		 
+		// return this.codigo.compareTo(aero.codigo);
+	 //}
+	 
+	 
 }
