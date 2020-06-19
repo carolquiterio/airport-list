@@ -5,14 +5,14 @@ public class Aeroporto implements Comparable<Aeroporto>, Cloneable
 	private String codigo;
 	private String nome;
 	private int numero;
-	private ListaSimplesDesordenada<Voo> listaDeVoos;
+	private ListaSimplesOrdenada<Voo> listaDeVoos;
 
 	public Aeroporto(String codigo, String nome, int numero)throws Exception
 	{
 		 this.setCodigo(codigo.toUpperCase());
 		 this.setNome  (nome.toUpperCase());
 		 this.setNumero(numero);
-		 this.listaDeVoos = new ListaSimplesDesordenada<Voo> ();
+		 this.listaDeVoos = new ListaSimplesOrdenada<Voo> ();
 	}
 	//setters
 	 public void setCodigo(String codigo) throws Exception
@@ -69,7 +69,7 @@ public class Aeroporto implements Comparable<Aeroporto>, Cloneable
             throw new Exception ("Falta o que guardar");
 
 
-          this.listaDeVoos.insiraNoFim(voo);
+          this.listaDeVoos.insira(voo);
 
 	 }
 

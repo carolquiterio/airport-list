@@ -286,7 +286,7 @@ public class ListaSimplesOrdenada <X extends Comparable<X>>
 		return ret;
 	}
 
-    public boolean isvazia ()
+    public boolean isVazia ()
     {
         return this.primeiro==null/*&&this.ultimo==null*/;
     }
