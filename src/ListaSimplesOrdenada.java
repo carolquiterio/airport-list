@@ -268,6 +268,7 @@ public class ListaSimplesOrdenada <X extends Comparable<X>>
         X ret = null;
 
         int comp = 0;
+
         for (No atual=this.primeiro; atual!=null; atual=atual.getProx())
         {
     		comp = comp + 1;
@@ -277,11 +278,11 @@ public class ListaSimplesOrdenada <X extends Comparable<X>>
 			}
 		}
 
-		if (ret instanceof Cloneable)
-            ret = meuCloneDeX (ret);
-
 		if(ret == null)
 			throw new Exception("Esse item não existe!");
+
+		if (ret instanceof Cloneable)
+            ret = meuCloneDeX (ret);
 
 		return ret;
 	}

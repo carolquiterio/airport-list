@@ -19,8 +19,10 @@ public class Programa
 				System.out.println("3 - remover o voo");
 				System.out.println("4 - listar na tela todos os voos que saem de determinado aeroporto");
 				System.out.println("5 - listar todos os voos");
+				System.out.println("");
 
 				entrada = in.nextInt();
+
 				for(int count=0 ; count<50 ; count++)
 				    System.out.println("");
 
